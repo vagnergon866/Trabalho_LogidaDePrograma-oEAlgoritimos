@@ -1,5 +1,3 @@
-from pickle import TUPLE
-
 print("-" * 10, "Bem-vindos a Pizzaria do Vagner do Amaral Gonçalves", "-" * 10)
 print("-" * 30, " Cardápio  ", "-" * 30)
 print("-" * 73)
