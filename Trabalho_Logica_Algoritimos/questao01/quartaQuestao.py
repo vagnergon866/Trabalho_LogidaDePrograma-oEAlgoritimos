@@ -8,8 +8,8 @@ id_global = 5020784
 
 def cadastrar_contato(id):
     print("-" * 17, "MENU CADASTRAR CONTRATOS", "-" * 17)
-
     global id_global
+    print(f"Id do Contato: {id_global}")
 
     contato = {'id': id_global,
                'nome': input("Por favor entre com o nome do Contato: "),
@@ -24,16 +24,22 @@ def cadastrar_contato(id):
 
 
 def consultar_contatos():
+    print("-" * 17, "MENU DE CONSULTAS", "-" * 17)
     while True:
         consultar = input("Escolha uma das opções:\n"
                           "1. Consultar Todos\n"
                           "2. Consultar por Id \n"
                           "3. Consultar por Setor \n"
-                          "4. Retornar ao menu")
+                          "4. Retornar ao menu\n")
 
         if consultar == "1":
-            for contatos in lista_contatos:
-                print(lista_contatos)
+            for contato in lista_contatos:
+                print("-" * 30)
+                print(f"id: {contato['id']}")
+                print(f"Nome: {contato['nome']}")
+                print(f"atividade: {contato['atividade']}")
+                print(f"telefone: {contato['telefone']}")
+                print("-" * 30)
 
         elif consultar == "2":
             id = int(input("Digite o id desejado: "))
@@ -41,16 +47,26 @@ def consultar_contatos():
 
             for contato in lista_contatos:
                 if contato['id'] == id:
-                    contrato_encontrado = contato
-                    print(contato)
+                    print("-" * 30)
+                    print(f"id: {contato['id']}")
+                    print(f"Nome: {contato['nome']}")
+                    print(f"atividade: {contato['atividade']}")
+                    print(f"telefone: {contato['telefone']}")
+                    print("-" * 30)
 
         elif consultar == "3":
-            atividade = int(input("Digite a atividade desejada: "))
+            atividade = (input("Digite a Atividade do(s) Contato(s): "))
             contrato_encontrado = lista_contatos
 
             for contatos in lista_contatos:
-                if contatos['atividade'].lower().upper() == atividade:
+                if contatos['atividade'].lower() == atividade.lower():
                     contrato_encontrado = contatos
+                    print("-" * 30)
+                    print(f"id: {contatos['id']}")
+                    print(f"Nome: {contatos['nome']}")
+                    print(f"atividade: {contatos['atividade']}")
+                    print(f"telefone: {contatos['telefone']}")
+                    print("-" * 30)
 
         elif consultar == "4":
             return
@@ -61,16 +77,18 @@ def consultar_contatos():
 
 
 def remover_contrato():
-    while True:
-        id = int(input("Digite o id que deseja remover: "))
-        contrato_encontrado = lista_contatos
+    print("-" * 17, "MENU REMOVER CONTATO", "-" * 17)
+    id = int(input("Digite o id que deseja remover: "))
+    contrato_encontrado = False
 
-        for contato in lista_contatos:
-            if contato['id'] == id:
-                contrato_encontrado = contato.delete()
-            else:
-                print("Id inválido")
-                continue
+    for contato in lista_contatos:
+        if contato['id'] == id:
+            lista_contatos.remove(contato)
+            print("Contato removido com sucesso!")
+            break
+
+        else:
+            print("Id inválido")
 
 
 # Programa principal (main)
